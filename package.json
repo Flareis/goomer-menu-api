@@ -9,7 +9,7 @@
     "lint": "eslint ./src",
     "lint:fix": "eslint ./src --fix",
     "format": "prettier --write .",
-    "migrate": "ts-node src/infra/database/migrations/run-migrations.ts"
+    "migrate": "ts-node src/infra/database/run-migrations.ts"
   },
   "keywords": [],
   "author": "",

@@ -2,7 +2,7 @@
 import { Promotions } from '../entities/promotions.entity';
 import { db } from '../infra/database';
 
-export class promotionsRepository {
+export class PromotionsRepository {
   async create(promotion: Omit<Promotions, 'id'>): Promise<Promotions> {
     const { description_promotion, price, week_days, start_time, end_time } = promotion;
 
