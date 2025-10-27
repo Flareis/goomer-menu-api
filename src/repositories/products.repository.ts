@@ -20,7 +20,7 @@ export class ProductsRepository {
   }
 
   async findAll(): Promise<Product[]> {
-    const [rows]: any = await db.query('SELECT * FROM products');
+    const [rows]: any = await db.query('SELECT * FROM products WHERE visibility = 1');
     return rows as Product[];
   }
 
