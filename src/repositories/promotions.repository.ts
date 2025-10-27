@@ -4,15 +4,16 @@ import { db } from '../infra/database';
 
 export class PromotionsRepository {
   async create(promotion: Omit<Promotions, 'id'>): Promise<Promotions> {
-    const { description_promotion, price, week_days, start_time, end_time } = promotion;
+    const { product_id, description_promotion, price, week_days, start_time, end_time } = promotion;
 
     const [result]: any = await db.query(
-      'INSERT INTO promotions (description_promotion, price, week_days, start_time, end_time) VALUES (?, ?, ?, ?, ?)',
-      [description_promotion, price, week_days, start_time, end_time]
+      'INSERT INTO promotions (product_id, description_promotion, price, week_days, start_time, end_time) VALUES (?, ?, ?, ?, ?, ?)',
+      [product_id, description_promotion, price, week_days, start_time, end_time]
     );
 
     return {
       id: result.insertId,
+      product_id,
       description_promotion,
       price,
       week_days,

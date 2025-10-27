@@ -1,5 +1,6 @@
 export interface Promotions {
   id: number;
+  product_id: number;
   description_promotion: string;
   price: number;
   week_days: Array<'mon' | 'tue' | 'wed' | 'thu' | 'fri' | 'sat' | 'sun'>;
