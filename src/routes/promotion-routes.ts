@@ -12,6 +12,10 @@ promotionsRoutes.post('/', (req, res) =>
 promotionsRoutes.get('/', (req, res) =>
   promotionsController.findAll(req, res))
 
+// rota para obter promoções ativas
+promotionsRoutes.get('/activePromotions', (req, res) =>
+  promotionsController.findActive(req, res))
+
 // rota para obter uma promoção por ID
 promotionsRoutes.get('/:id', (req, res) =>
   promotionsController.findById(req, res))

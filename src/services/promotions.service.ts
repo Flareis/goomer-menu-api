@@ -33,4 +33,8 @@ export class PromotionsService {
   async delete(id: number): Promise<void> {
     return this.repository.delete(id);
   }
+
+  async findActive(): Promise<Promotions[]> {
+    return this.repository.findActive();
+  }
 }
