@@ -314,6 +314,46 @@ export const swaggerDocument: SwaggerOptions = {
             }
           }
         ],
+        requestBody: {
+          required: true,
+          content: {
+            'application/json': {
+              schema: {
+                type: 'object',
+                properties: {
+                  product_id: {
+                    type: 'integer',
+                    example: 1
+                  },
+                  description_promotion: {
+                    type: 'string',
+                    example: 'Happy Hour - Double Beer'
+                  },
+                  price: {
+                    type: 'number',
+                    format: 'float',
+                    example: 25.90
+                  },
+                  week_days: {
+                    type: 'string',
+                    description: 'Days of the week when promotion is active (comma separated)',
+                    example: 'thu,fri,sat,sun'
+                  },
+                  start_time: {
+                    type: 'string',
+                    pattern: '^([01]\\d|2[0-3]):[0-5]\\d$',
+                    example: '18:00'
+                  },
+                  end_time: {
+                    type: 'string',
+                    pattern: '^([01]\\d|2[0-3]):[0-5]\\d$',
+                    example: '20:00'
+                  }
+                }
+              }
+            }
+          }
+        },
         responses: {
           '200': {
             description: 'Promotion updated'
