@@ -54,4 +54,20 @@ export class PromotionsRepository {
   async delete(id: number): Promise<void> {
     await db.query('DELETE FROM promotions WHERE id = ?', [id]);
   }
+
+  async findActive() {
+    const now = new Date();
+    const currentDay = ['sun','mon','tue','wed','thu','fri','sat'][now.getDay()];
+    const currentTime = now.toTimeString().slice(0,5); // "HH:mm"
+  
+    const [rows] = await db.query(`
+      SELECT * FROM promotions
+      WHERE FIND_IN_SET(?, week_days)
+        AND start_time <= ?
+        AND end_time >= ?
+    `, [currentDay, currentTime, currentTime]);
+  
+    return rows as Promotions[];
+  }
+  
 }

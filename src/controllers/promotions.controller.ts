@@ -37,4 +37,9 @@ export class PromotionsController {
     await this.service.delete(id);
     res.status(204).send();
   }
+
+  async findActive(req: Request, res: Response) {
+    const activePromotions = await this.service.findActive();
+    res.json(activePromotions)
+  }
 }
