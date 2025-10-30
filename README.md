@@ -82,13 +82,29 @@ ou em modo desenvolvimento:
 
    npm run dev
 
-6. Endpoints principais:
+6. Documentação da API (Swagger)
+
+A documentação completa da API está disponível através do Swagger UI:
+
+- Local: http://localhost:3000/api/docs
+- Docker: http://[DOCKER_HOST]:3000/api/docs
+
+7. Endpoints da API:
 
 | Método | Endpoint                           | Descrição                                  |
 | ------ | ---------------------------------- | ------------------------------------------ |
 | GET    | `/api/menu`                        | Lista produtos visíveis + promoções ativas |
-| GET    | `/api/products`                    | Retorna produtos visiveis                  |
-| GET    | `/api/promotions`                  | Retorna promoções cadastrasdas             |
+| POST   | `/api/products`                    | Cria um novo produto                       |
+| GET    | `/api/products`                    | Lista todos os produtos                    |
+| GET    | `/api/products/:id`                | Busca produto por ID                       |
+| PUT    | `/api/products/:id`                | Atualiza um produto                        |
+| DELETE | `/api/products/:id`                | Remove um produto                          |
+| POST   | `/api/promotions`                  | Cria uma nova promoção                     |
+| GET    | `/api/promotions`                  | Lista todas as promoções                   |
+| GET    | `/api/promotions/activePromotions` | Lista promoções ativas no momento          |
+| GET    | `/api/promotions/:id`              | Busca promoção por ID                      |
+| PUT    | `/api/promotions/:id`              | Atualiza uma promoção                      |
+| DELETE | `/api/promotions/:id`              | Remove uma promoção                        |
 
 
 7. Exemplo de resposta /menu
@@ -119,6 +135,16 @@ ou em modo desenvolvimento:
  - ESLint / Prettier
 
  ---
+
+## Desafios e Melhorias Futuras
+
+1. **Tipagem de week_days**: 
+   - Atualmente: string no banco vs array na aplicação
+   - Melhoria proposta: Implementar enum para padronizar os dias da semana e garantir consistência
+
+2. **Validação de horários**:
+   - Atualmente: validação básica de formato HH:mm
+   - Melhoria: Tratar promoções que vão além da meia-noite e validar intervalo mínimo de 15 minutos, neste caso.
 
 ## Autora
 
