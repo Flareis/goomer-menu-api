@@ -1,12 +1,13 @@
 import { Product } from "../entities/products.entity";
 import { Promotions } from "../entities/promotions.entity";
-import { ProductsRepository } from "../repositories/products.repository";
-import { PromotionsRepository } from "../repositories/promotions.repository";
+import { ProductsRepository } from '../repositories/products.repository';
+import { PromotionsRepository } from '../repositories/promotions.repository';
 
 export class MenuService {
-
-  private productsRepository = new ProductsRepository();
-  private promotionsRepository = new PromotionsRepository();
+  constructor(
+    private productsRepository: ProductsRepository,
+    private promotionsRepository: PromotionsRepository
+  ) {}
 
   async getMenu() {
     // Busca todos os produtos visíveis
