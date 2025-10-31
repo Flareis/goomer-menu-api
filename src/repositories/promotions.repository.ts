@@ -1,4 +1,3 @@
-
 import { Promotions } from '../entities/promotions.entity';
 import { db } from '../infra/database';
 
@@ -8,7 +7,7 @@ export class PromotionsRepository {
 
     const [result]: any = await db.query(
       'INSERT INTO promotions (product_id, description_promotion, price, week_days, start_time, end_time) VALUES (?, ?, ?, ?, ?, ?)',
-      [product_id, description_promotion, price, week_days, start_time, end_time]
+      [product_id, description_promotion, price, week_days, start_time, end_time],
     );
 
     return {
@@ -18,7 +17,7 @@ export class PromotionsRepository {
       price,
       week_days,
       start_time,
-      end_time
+      end_time,
     };
   }
 
@@ -43,10 +42,7 @@ export class PromotionsRepository {
 
     if (fields.length === 0) return null;
 
-    await db.query(
-      `UPDATE promotions SET ${fields.join(', ')} WHERE id = ?`,
-      [...values, id]
-    );
+    await db.query(`UPDATE promotions SET ${fields.join(', ')} WHERE id = ?`, [...values, id]);
 
     return this.findById(id);
   }
@@ -57,17 +53,19 @@ export class PromotionsRepository {
 
   async findActive() {
     const now = new Date();
-    const currentDay = ['sun','mon','tue','wed','thu','fri','sat'][now.getDay()];
-    const currentTime = now.toTimeString().slice(0,5); // "HH:mm"
-  
-    const [rows] = await db.query(`
+    const currentDay = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'][now.getDay()];
+    const currentTime = now.toTimeString().slice(0, 5); // "HH:mm"
+
+    const [rows] = await db.query(
+      `
       SELECT * FROM promotions
       WHERE FIND_IN_SET(?, week_days)
         AND start_time <= ?
         AND end_time >= ?
-    `, [currentDay, currentTime, currentTime]);
-  
+    `,
+      [currentDay, currentTime, currentTime],
+    );
+
     return rows as Promotions[];
   }
-  
 }

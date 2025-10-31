@@ -1,4 +1,3 @@
-
 import { ProductsRepository } from '../../repositories/products.repository';
 import { PromotionsRepository } from '../../repositories/promotions.repository';
 import { Product } from '../../entities/products.entity';
@@ -21,7 +20,7 @@ describe('MenuService', () => {
     jest.clearAllMocks();
     menuService = new MenuService(
       mockProductsRepository as unknown as ProductsRepository,
-      mockPromotionsRepository as unknown as PromotionsRepository
+      mockPromotionsRepository as unknown as PromotionsRepository,
     );
   });
 

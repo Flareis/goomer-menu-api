@@ -1,4 +1,4 @@
-#  Goomer Menu API
+# Goomer Menu API
 
 API desenvolvida como parte de um desafio técnico, responsável por gerenciar produtos e promoções de um cardápio digital.  
 Construída com **Node.js + Express + TypeScript**, utilizando **MySQL** como banco de dados.
@@ -7,11 +7,12 @@ Construída com **Node.js + Express + TypeScript**, utilizando **MySQL** como ba
 
 ## Funcionalidades
 
-- **GET /menu** → Retorna produtos visíveis (`visibility = 1`) com promoções ativas anexadas  
-- **GET /products** → Lista todos os produtos ativos 
+- **GET /menu** → Retorna produtos visíveis (`visibility = 1`) com promoções ativas anexadas
+- **GET /products** → Lista todos os produtos ativos
 - **GET /promotions** → Lista as promoções cadastradas
 
 Cada produto pode conter uma promoção ativa, considerando:
+
 - Dias da semana (`week_days`)
 - Horário de início e fim (`start_time`, `end_time`)
 
@@ -32,20 +33,21 @@ O projeto segue uma estrutura modular inspirada em **Clean Architecture**, separ
 ---
 
 ## Configuração do Ambiente
-1. Clonar o repositório
+
+1.  Clonar o repositório
 
     git clone https://github.com/Flareis/goomer-menu-api.git
 
     cd goomer-menu-api
 
-2. Instalar dependências
+2.  Instalar dependências
 
         npm install
 
-3. Criar arquivo .env
+3.  Criar arquivo .env
 
 Crie um arquivo .env na raiz do projeto:
-    
+
     PORT=3000
     DATABASE_HOST=localhost
     DATABASE_PORT=3306
@@ -53,7 +55,8 @@ Crie um arquivo .env na raiz do projeto:
     DATABASE_PASSWORD=root
     DATABASE_NAME=goomer
 
-### OBS: 
+### OBS:
+
 Use localhost se estiver rodando o MySQL localmente.
 Dentro do Docker, o DB_HOST será automaticamente substituído por db.
 
@@ -62,6 +65,7 @@ Dentro do Docker, o DB_HOST será automaticamente substituído por db.
 Certifique-se de ter Docker e Docker Compose instalados. Depois, execute:
 
     docker compose up --build
+
 Isso irá subir o MySQL e a API
 
 Executar migrações com:
@@ -80,7 +84,7 @@ Caso prefira rodar sem containers:
 
 ou em modo desenvolvimento:
 
-   npm run dev
+npm run dev
 
 6. Documentação da API (Swagger)
 
@@ -106,8 +110,7 @@ A documentação completa da API está disponível através do Swagger UI:
 | PUT    | `/api/promotions/:id`              | Atualiza uma promoção                      |
 | DELETE | `/api/promotions/:id`              | Remove uma promoção                        |
 
-
-7. Exemplo de resposta /menu
+7.  Exemplo de resposta /menu
 
         [
           {
@@ -125,20 +128,20 @@ A documentação completa da API está disponível através do Swagger UI:
           }
         ]
 
-8. Tecnologias utilizadas
+8.  Tecnologias utilizadas
 
- - Node.js
- - Express
- - TypeScript
- - MySQL
- - Docker
- - ESLint / Prettier
+- Node.js
+- Express
+- TypeScript
+- MySQL
+- Docker
+- ESLint / Prettier
 
- ---
+---
 
 ## Desafios e Melhorias Futuras
 
-1. **Tipagem de week_days**: 
+1. **Tipagem de week_days**:
    - Atualmente: string no banco vs array na aplicação
    - Melhoria proposta: Implementar enum para padronizar os dias da semana e garantir consistência
 
@@ -148,8 +151,8 @@ A documentação completa da API está disponível através do Swagger UI:
 
 ## Autora
 
- **Flávia dos Reis**
- 
- **Desenvolvedora Backend Node.js**
+**Flávia dos Reis**
 
-  [GitHub](https://github.com/Flareis)     •    [LinkedIn](https://www.linkedin.com/in/flaviadosreis)
+**Desenvolvedora Backend Node.js**
+
+[GitHub](https://github.com/Flareis) • [LinkedIn](https://www.linkedin.com/in/flaviadosreis)

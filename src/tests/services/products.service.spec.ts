@@ -1,9 +1,9 @@
-import { ProductsService } from "../../services/product.service";
-import { ProductsRepository } from "../../repositories/products.repository";
+import { ProductsService } from '../../services/product.service';
+import { ProductsRepository } from '../../repositories/products.repository';
 
-jest.mock("../../repositories/products.repository");
+jest.mock('../../repositories/products.repository');
 
-describe("ProductsService", () => {
+describe('ProductsService', () => {
   let service: ProductsService;
   let repository: jest.Mocked<ProductsRepository>;
 
@@ -12,18 +12,18 @@ describe("ProductsService", () => {
     service = new ProductsService(repository);
   });
 
-  describe("create", () => {
-    it("should create a product with default visibility true", async () => {
+  describe('create', () => {
+    it('should create a product with default visibility true', async () => {
       const productData = {
-        name: "X-Burger",
+        name: 'X-Burger',
         price: 25.9,
-        category: "Lanches",
+        category: 'Lanches',
         visibility: true,
       };
 
       repository.create.mockResolvedValue({
         id: 1,
-        ...productData
+        ...productData,
       });
 
       const result = await service.create(productData);
@@ -36,21 +36,21 @@ describe("ProductsService", () => {
     });
   });
 
-  describe("findAll", () => {
-    it("should return all products", async () => {
+  describe('findAll', () => {
+    it('should return all products', async () => {
       const products = [
         {
           id: 1,
-          name: "X-Burger",
+          name: 'X-Burger',
           price: 25.9,
-          category: "Lanches",
+          category: 'Lanches',
           visibility: true,
         },
         {
           id: 2,
-          name: "Coca-Cola",
+          name: 'Coca-Cola',
           price: 8.0,
-          category: "Bebidas",
+          category: 'Bebidas',
           visibility: false,
         },
       ];
@@ -64,13 +64,13 @@ describe("ProductsService", () => {
     });
   });
 
-  describe("findById", () => {
-    it("should return product when found", async () => {
+  describe('findById', () => {
+    it('should return product when found', async () => {
       const product = {
         id: 1,
-        name: "X-Burger",
+        name: 'X-Burger',
         price: 25.9,
-        category: "Lanches",
+        category: 'Lanches',
         visibility: true,
       };
 
@@ -82,7 +82,7 @@ describe("ProductsService", () => {
       expect(repository.findById).toHaveBeenCalledWith(1);
     });
 
-    it("should return null when product not found", async () => {
+    it('should return null when product not found', async () => {
       repository.findById.mockResolvedValue(null);
 
       const result = await service.findById(999);
@@ -91,17 +91,17 @@ describe("ProductsService", () => {
     });
   });
 
-  describe("update", () => {
-    it("should update product when found", async () => {
+  describe('update', () => {
+    it('should update product when found', async () => {
       const updateData = {
-        name: "Super X-Burger",
+        name: 'Super X-Burger',
         price: 29.9,
       };
 
       const updatedProduct = {
         id: 1,
         ...updateData,
-        category: "Lanches",
+        category: 'Lanches',
         visibility: true,
       };
 
@@ -113,25 +113,25 @@ describe("ProductsService", () => {
       expect(repository.update).toHaveBeenCalledWith(1, updateData);
     });
 
-    it("should return null when product not found", async () => {
+    it('should return null when product not found', async () => {
       repository.update.mockResolvedValue(null);
 
-      const result = await service.update(999, { name: "Test" });
+      const result = await service.update(999, { name: 'Test' });
 
       expect(result).toBeNull();
-      expect(repository.update).toHaveBeenCalledWith(999, { name: "Test" });
+      expect(repository.update).toHaveBeenCalledWith(999, { name: 'Test' });
     });
 
-    it("should update product visibility", async () => {
+    it('should update product visibility', async () => {
       const updateData = {
         visibility: false,
       };
 
       const updatedProduct = {
         id: 1,
-        name: "X-Burger",
+        name: 'X-Burger',
         price: 25.9,
-        category: "Lanches",
+        category: 'Lanches',
         visibility: false,
       };
 
@@ -144,8 +144,8 @@ describe("ProductsService", () => {
     });
   });
 
-  describe("delete", () => {
-    it("should delete product successfully", async () => {
+  describe('delete', () => {
+    it('should delete product successfully', async () => {
       repository.delete.mockResolvedValue();
 
       await service.delete(1);

@@ -7,7 +7,7 @@ export class ProductsRepository {
 
     const [result]: any = await db.query(
       'INSERT INTO products (name, price, category, visibility) VALUES (?, ?, ?, ?)',
-      [name, price, category, visibility]
+      [name, price, category, visibility],
     );
 
     return {
@@ -40,10 +40,7 @@ export class ProductsRepository {
 
     if (fields.length === 0) return null;
 
-    await db.query(
-      `UPDATE products SET ${fields.join(', ')} WHERE id = ?`,
-      [...values, id]
-    );
+    await db.query(`UPDATE products SET ${fields.join(', ')} WHERE id = ?`, [...values, id]);
 
     return this.findById(id);
   }

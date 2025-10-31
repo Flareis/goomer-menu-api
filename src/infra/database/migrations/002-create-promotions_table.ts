@@ -13,7 +13,7 @@ export async function up() {
         CONSTRAINT fk_product FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE
       );
   `);
-  console.log("Table created successfully!");
+  console.log('Table created successfully!');
 }
 
 export async function down() {

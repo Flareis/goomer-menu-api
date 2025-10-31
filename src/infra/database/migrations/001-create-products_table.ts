@@ -10,7 +10,7 @@ export async function up() {
         visibility BOOLEAN DEFAULT true
       );
   `);
-  console.log("Table created successfully!");
+  console.log('Table created successfully!');
 }
 
 export async function down() {

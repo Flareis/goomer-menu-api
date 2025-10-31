@@ -15,7 +15,7 @@ describe('PromotionsService', () => {
         price: 10,
         week_days: 'mon,tue',
         start_time: 'invalid',
-        end_time: '18:00'
+        end_time: '18:00',
       };
 
       await expect(service.create(promotion)).rejects.toThrow('Invalid time format');
@@ -28,10 +28,12 @@ describe('PromotionsService', () => {
         price: 10,
         week_days: 'mon,tue',
         start_time: '18:00',
-        end_time: '18:10'
+        end_time: '18:10',
       };
 
-      await expect(service.create(promotion)).rejects.toThrow('Interval must be at least 15 minutes');
+      await expect(service.create(promotion)).rejects.toThrow(
+        'Interval must be at least 15 minutes',
+      );
     });
   });
 });

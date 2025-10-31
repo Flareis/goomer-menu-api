@@ -1,6 +1,5 @@
-import { up as upProducts } from "./migrations/001-create-products_table";
-import { up as upPromotions } from "./migrations/002-create-promotions_table";
-
+import { up as upProducts } from './migrations/001-create-products_table';
+import { up as upPromotions } from './migrations/002-create-promotions_table';
 
 async function runMigrations() {
   try {

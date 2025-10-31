@@ -1,8 +1,15 @@
-import { Request, Response } from "express";
-import { MenuService } from "../services/menu.service";
+import { Request, Response } from 'express';
+import { MenuService } from '../services/menu.service';
+import { ProductsRepository } from '../repositories/products.repository';
+import { PromotionsRepository } from '../repositories/promotions.repository';
 
 export class MenuController {
-  constructor(private service = new MenuService()) {}
+  constructor(
+    private service = new MenuService(
+      new ProductsRepository(),
+      new PromotionsRepository(),
+    ),
+  ) {}
 
   async getMenu(req: Request, res: Response) {
     try {

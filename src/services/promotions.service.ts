@@ -9,7 +9,7 @@ function isValidTime(time: string) {
   return TIME_REGEX.test(time);
 }
 export class PromotionsService {
-  constructor(private repository = new PromotionsRepository()) { }
+  constructor(private repository = new PromotionsRepository()) {}
 
   async create(promotion: Omit<Promotions, 'id'>): Promise<Promotions> {
     // validação do formato de hora
@@ -20,8 +20,8 @@ export class PromotionsService {
     const start = new Date(`1970-01-01T${promotion.start_time}:00`);
     const end = new Date(`1970-01-01T${promotion.end_time}:00`);
 
-    // TODO: melhoria — tratar promoções que atravessam meia-noite 
-    
+    // TODO: melhoria — tratar promoções que atravessam meia-noite
+
     //diferença entre os intervalos dividido por 60000
     const diffMinutes = (end.getTime() - start.getTime()) / (1000 * 60);
 
@@ -40,7 +40,10 @@ export class PromotionsService {
     return this.repository.findById(id);
   }
 
-  async update(id: number, Promotions: Partial<Omit<Promotions, 'id'>>): Promise<Promotions | null> {
+  async update(
+    id: number,
+    Promotions: Partial<Omit<Promotions, 'id'>>,
+  ): Promise<Promotions | null> {
     return this.repository.update(id, Promotions);
   }
 

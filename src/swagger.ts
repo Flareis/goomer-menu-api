@@ -8,18 +8,18 @@ export const swaggerDocument: SwaggerOptions = {
     version: '1.0.0',
     contact: {
       name: 'Flávia dos Reis',
-      url: 'https://github.com/Flareis'
-    }
+      url: 'https://github.com/Flareis',
+    },
   },
   servers: [
     {
       url: 'http://localhost:3000/api',
-      description: 'Local Development'
+      description: 'Local Development',
     },
     {
       url: 'http://${process.env.DATABASE_HOST}:3000/api',
-      description: 'Docker Development'
-    }
+      description: 'Docker Development',
+    },
   ],
   paths: {
     '/menu': {
@@ -31,24 +31,26 @@ export const swaggerDocument: SwaggerOptions = {
             description: 'List of products with promotions',
             content: {
               'application/json': {
-                example: [{
-                  id: 1,
-                  name: "X-Burger",
-                  price: 25.90,
-                  category: "Lanches",
-                  promotion: {
-                    description: "Promoção de segunda!",
-                    price: 19.90,
-                    week_days: "mon",
-                    start_time: "10:00",
-                    end_time: "22:00"
-                  }
-                }]
-              }
-            }
-          }
-        }
-      }
+                example: [
+                  {
+                    id: 1,
+                    name: 'X-Burger',
+                    price: 25.9,
+                    category: 'Lanches',
+                    promotion: {
+                      description: 'Promoção de segunda!',
+                      price: 19.9,
+                      week_days: 'mon',
+                      start_time: '10:00',
+                      end_time: '22:00',
+                    },
+                  },
+                ],
+              },
+            },
+          },
+        },
+      },
     },
     '/products': {
       post: {
@@ -64,46 +66,46 @@ export const swaggerDocument: SwaggerOptions = {
                 properties: {
                   name: {
                     type: 'string',
-                    example: 'X-Burger'
+                    example: 'X-Burger',
                   },
                   price: {
                     type: 'number',
                     format: 'float',
-                    example: 25.90
+                    example: 25.9,
                   },
                   category: {
                     type: 'string',
                     description: 'Product category (e.g., Lanches, Bebidas, Sobremesas)',
-                    example: 'Lanches'
+                    example: 'Lanches',
                   },
                   visibility: {
                     type: 'boolean',
                     default: true,
-                    example: true
-                  }
-                }
-              }
-            }
-          }
+                    example: true,
+                  },
+                },
+              },
+            },
+          },
         },
         responses: {
           '201': {
-            description: 'Product created successfully'
+            description: 'Product created successfully',
           },
           '400': {
-            description: 'Invalid input'
-          }
-        }
+            description: 'Invalid input',
+          },
+        },
       },
       get: {
         tags: ['Products'],
         summary: 'List all products',
         responses: {
           '200': {
-            description: 'List of products'
-          }
-        }
-      }
+            description: 'List of products',
+          },
+        },
+      },
     },
     '/products/{id}': {
       get: {
@@ -115,18 +117,18 @@ export const swaggerDocument: SwaggerOptions = {
             in: 'path',
             required: true,
             schema: {
-              type: 'integer'
-            }
-          }
+              type: 'integer',
+            },
+          },
         ],
         responses: {
           '200': {
-            description: 'Product found'
+            description: 'Product found',
           },
           '404': {
-            description: 'Product not found'
-          }
-        }
+            description: 'Product not found',
+          },
+        },
       },
       put: {
         tags: ['Products'],
@@ -137,9 +139,9 @@ export const swaggerDocument: SwaggerOptions = {
             in: 'path',
             required: true,
             schema: {
-              type: 'integer'
-            }
-          }
+              type: 'integer',
+            },
+          },
         ],
         requestBody: {
           required: true,
@@ -150,35 +152,35 @@ export const swaggerDocument: SwaggerOptions = {
                 properties: {
                   name: {
                     type: 'string',
-                    example: 'X-Burger'
+                    example: 'X-Burger',
                   },
                   price: {
                     type: 'number',
                     format: 'float',
-                    example: 25.90
+                    example: 25.9,
                   },
                   category: {
                     type: 'string',
                     description: 'Product category (e.g., Lanches, Bebidas, Sobremesas)',
-                    example: 'Lanches'
+                    example: 'Lanches',
                   },
                   visibility: {
                     type: 'boolean',
-                    example: true
-                  }
-                }
-              }
-            }
-          }
+                    example: true,
+                  },
+                },
+              },
+            },
+          },
         },
         responses: {
           '200': {
-            description: 'Product updated'
+            description: 'Product updated',
           },
           '404': {
-            description: 'Product not found'
-          }
-        }
+            description: 'Product not found',
+          },
+        },
       },
       delete: {
         tags: ['Products'],
@@ -189,19 +191,19 @@ export const swaggerDocument: SwaggerOptions = {
             in: 'path',
             required: true,
             schema: {
-              type: 'integer'
-            }
-          }
+              type: 'integer',
+            },
+          },
         ],
         responses: {
           '204': {
-            description: 'Product deleted'
+            description: 'Product deleted',
           },
           '404': {
-            description: 'Product not found'
-          }
-        }
-      }
+            description: 'Product not found',
+          },
+        },
+      },
     },
     '/promotions': {
       post: {
@@ -213,59 +215,66 @@ export const swaggerDocument: SwaggerOptions = {
             'application/json': {
               schema: {
                 type: 'object',
-                required: ['product_id', 'description_promotion', 'price', 'week_days', 'start_time', 'end_time'],
+                required: [
+                  'product_id',
+                  'description_promotion',
+                  'price',
+                  'week_days',
+                  'start_time',
+                  'end_time',
+                ],
                 properties: {
                   product_id: {
                     type: 'integer',
-                    example: 1
+                    example: 1,
                   },
                   description_promotion: {
                     type: 'string',
-                    example: 'Happy Hour - Double Beer'
+                    example: 'Happy Hour - Double Beer',
                   },
                   price: {
                     type: 'number',
                     format: 'float',
-                    example: 19.90
+                    example: 19.9,
                   },
                   week_days: {
                     type: 'string',
                     description: 'Days of the week when promotion is active (comma separated)',
-                    example: 'thu,fri,sat,sun'
+                    example: 'thu,fri,sat,sun',
                   },
                   start_time: {
                     type: 'string',
                     pattern: '^([01]\\d|2[0-3]):[0-5]\\d$',
-                    example: '18:00'
+                    example: '18:00',
                   },
                   end_time: {
                     type: 'string',
                     pattern: '^([01]\\d|2[0-3]):[0-5]\\d$',
-                    example: '20:00'
-                  }
-                }
-              }
-            }
-          }
+                    example: '20:00',
+                  },
+                },
+              },
+            },
+          },
         },
         responses: {
           '201': {
-            description: 'Promotion created successfully'
+            description: 'Promotion created successfully',
           },
           '400': {
-            description: 'Invalid input'
-          }
-        }
+            description: 'Invalid input',
+          },
+        },
       },
       get: {
         tags: ['Promotions'],
         summary: 'List all promotions',
         responses: {
           '200': {
-            description: 'List of promotions'
-          }
-        }
-      }
+            description: 'List of promotions',
+          },
+        },
+      },
     },
     '/promotions/activePromotions': {
       get: {
@@ -273,10 +282,10 @@ export const swaggerDocument: SwaggerOptions = {
         summary: 'List currently active promotions',
         responses: {
           '200': {
-            description: 'List of active promotions'
-          }
-        }
-      }
+            description: 'List of active promotions',
+          },
+        },
+      },
     },
     '/promotions/{id}': {
       get: {
@@ -288,18 +297,18 @@ export const swaggerDocument: SwaggerOptions = {
             in: 'path',
             required: true,
             schema: {
-              type: 'integer'
-            }
-          }
+              type: 'integer',
+            },
+          },
         ],
         responses: {
           '200': {
-            description: 'Promotion found'
+            description: 'Promotion found',
           },
           '404': {
-            description: 'Promotion not found'
-          }
-        }
+            description: 'Promotion not found',
+          },
+        },
       },
       put: {
         tags: ['Promotions'],
@@ -310,9 +319,9 @@ export const swaggerDocument: SwaggerOptions = {
             in: 'path',
             required: true,
             schema: {
-              type: 'integer'
-            }
-          }
+              type: 'integer',
+            },
+          },
         ],
         requestBody: {
           required: true,
@@ -323,45 +332,45 @@ export const swaggerDocument: SwaggerOptions = {
                 properties: {
                   product_id: {
                     type: 'integer',
-                    example: 1
+                    example: 1,
                   },
                   description_promotion: {
                     type: 'string',
-                    example: 'Happy Hour - Double Beer'
+                    example: 'Happy Hour - Double Beer',
                   },
                   price: {
                     type: 'number',
                     format: 'float',
-                    example: 25.90
+                    example: 25.9,
                   },
                   week_days: {
                     type: 'string',
                     description: 'Days of the week when promotion is active (comma separated)',
-                    example: 'thu,fri,sat,sun'
+                    example: 'thu,fri,sat,sun',
                   },
                   start_time: {
                     type: 'string',
                     pattern: '^([01]\\d|2[0-3]):[0-5]\\d$',
-                    example: '18:00'
+                    example: '18:00',
                   },
                   end_time: {
                     type: 'string',
                     pattern: '^([01]\\d|2[0-3]):[0-5]\\d$',
-                    example: '20:00'
-                  }
-                }
-              }
-            }
-          }
+                    example: '20:00',
+                  },
+                },
+              },
+            },
+          },
         },
         responses: {
           '200': {
-            description: 'Promotion updated'
+            description: 'Promotion updated',
           },
           '404': {
-            description: 'Promotion not found'
-          }
-        }
+            description: 'Promotion not found',
+          },
+        },
       },
       delete: {
         tags: ['Promotions'],
@@ -372,19 +381,19 @@ export const swaggerDocument: SwaggerOptions = {
             in: 'path',
             required: true,
             schema: {
-              type: 'integer'
-            }
-          }
+              type: 'integer',
+            },
+          },
         ],
         responses: {
           '204': {
-            description: 'Promotion deleted'
+            description: 'Promotion deleted',
           },
           '404': {
-            description: 'Promotion not found'
-          }
-        }
-      }
-    }
-  }
+            description: 'Promotion not found',
+          },
+        },
+      },
+    },
+  },
 };

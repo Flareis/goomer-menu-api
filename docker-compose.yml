@@ -1,4 +1,4 @@
-version: "3.8"
+version: '3.8'
 
 services:
   db:
@@ -9,7 +9,7 @@ services:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: goomer
     ports:
-      - "3306:3306"
+      - '3306:3306'
     volumes:
       - db_data:/var/lib/mysql
 
@@ -17,7 +17,7 @@ services:
     build: .
     container_name: goomer-app
     ports:
-      - "3000:3000"
+      - '3000:3000'
     volumes:
       - .:/app
       - /app/node_modules

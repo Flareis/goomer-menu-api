@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import { PromotionsService } from '../services/promotions.service';
 
 export class PromotionsController {
-  constructor(private service = new PromotionsService()) { }
+  constructor(private service = new PromotionsService()) {}
 
   async create(req: Request, res: Response) {
     try {
@@ -28,7 +28,8 @@ export class PromotionsController {
   async update(req: Request, res: Response) {
     const id = Number(req.params.id);
     const updated = await this.service.update(id, req.body);
-    if (!updated) return res.status(404).json({ error: 'Promotion not found or nothing to update' });
+    if (!updated)
+      return res.status(404).json({ error: 'Promotion not found or nothing to update' });
     res.json(updated);
   }
 
@@ -40,6 +41,6 @@ export class PromotionsController {
 
   async findActive(req: Request, res: Response) {
     const activePromotions = await this.service.findActive();
-    res.json(activePromotions)
+    res.json(activePromotions);
   }
 }
