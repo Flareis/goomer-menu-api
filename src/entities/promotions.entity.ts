@@ -3,7 +3,7 @@ export interface Promotions {
   product_id: number;
   description_promotion: string;
   price: number;
-  week_days: Array<'mon' | 'tue' | 'wed' | 'thu' | 'fri' | 'sat' | 'sun'>;
+  week_days: string;
   start_time: string;
   end_time: string;
 }
